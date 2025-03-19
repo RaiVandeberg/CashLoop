@@ -3,6 +3,6 @@ export function NotFound() {
         <h1 className="text-10xl font-extrabold mb-10">404</h1>
         <h2 className="text-7xl mb-15 font-extrabold">Página não encontrada🥲</h2>
 
-        <a href="/" className=" text-2xl text-black">Voltar para o inicio</a>
+        <a href="/" className=" text-2xl text-black hover:text-red-300 transition ease-linear">Voltar para o inicio</a>
     </div>
 }
