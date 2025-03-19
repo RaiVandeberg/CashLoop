@@ -4,15 +4,17 @@ import { Input } from "../components/Input"
 
 import { Button } from "../components/Button"
 
-export function SignIn() {
+export function SignUp() {
 
+    const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [passwordConfirm, setPasswordConfirm] = useState("")
     const [isLoading, setIsLoading] = useState(false)
 
     function onSubmit(e: React.FormEvent) {
         e.preventDefault()
-        console.log({email, password})
+        console.log({name, email, password, passwordConfirm})
 
     }
 
@@ -25,6 +27,13 @@ export function SignIn() {
         onChange={e => setEmail(e.target.value)}
         />
 
+<Input required 
+        legend="nome"   
+        placeholder="Seu nome"
+        onChange={e => setName(e.target.value)} 
+        
+        />
+
         <Input required 
         legend="Senha" 
         type="password"   
@@ -33,9 +42,19 @@ export function SignIn() {
         onChange={e => setPassword(e.target.value)}
         />
 
-        <Button type="submit" isLoading={isLoading}>Entrar</Button>
+<Input required 
+        legend="Confirme sua senha" 
+        type="password"   
+        placeholder="Confirme sua senha" 
+        min={6}
+        onChange={e => setPasswordConfirm(e.target.value)}
 
-        <a href="/signup" className="text-sm font-semibold text-gray-200 mt-5 mb-2 text-center hover:text-red-300 transition ease-linear">Criar Conta</a>
+        />
+
+        <Button type="submit" isLoading={isLoading}>Cadastrar</Button>
+
+        <a href="/" className="text-sm font-semibold text-gray-200 mt-5 mb-2 text-center hover:text-red-300 transition ease-linear col-start-1">Já tenho uma conta</a>
+
 
     </form>
 }
