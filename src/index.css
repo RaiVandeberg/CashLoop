@@ -25,3 +25,13 @@ select{
   background-size: 1.25rem auto; 
 }
 
+::-webkit-scrollbar{
+  width: 0.5rem;
+  background-color: #B02525;
+}
+
+::-webkit-scrollbar-thumb{
+  background: #e4ece9;
+
+}
+
