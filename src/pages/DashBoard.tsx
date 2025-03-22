@@ -4,7 +4,7 @@ import { useState } from "react"
 import { CATEGORIES } from "../utils/categories"
 import searchSvg from "../assets/search.svg"
 import { Pagination } from "../components/Pagination"
-import { CashLoopItens } from "../components/CashLoopItem"
+import { CashLoopItens, CashLoopItemProps } from "../components/CashLoopItem"
 import { formatCurrency } from "../utils/formatCurrency"
 
 const REFUND_EXAMPLE = {
@@ -20,6 +20,7 @@ export function DashBoard() {
     const [name, setName] = useState("")
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(10)
+    const [refunds, setRefunds] = useState<CashLoopItemProps[]>([REFUND_EXAMPLE])
 
     function fetchRefunds(e: React.FormEvent) {
         e.preventDefault()
@@ -54,18 +55,22 @@ export function DashBoard() {
           
         </form>
 
-        <div className="mt-6 flex flex-col gap-4 max-h-[342px] overflow-y-scroll">
-            <CashLoopItens data={REFUND_EXAMPLE} />
-            <CashLoopItens data={REFUND_EXAMPLE} />
-            <CashLoopItens data={REFUND_EXAMPLE} />
-      
+        <div className="my-6 flex flex-col gap-4 max-h-[342px] overflow-y-scroll">
+
+            {refunds.map((item) => (
+                <CashLoopItens  key={item.id} data={item} href={`/cashLoop/${item.id}` } />
+                    
+                ))}
+
         </div>
 
         <Pagination
         current={page}
         total={totalPages} 
         onNext={() => handlePagenation("next")} 
-        onPrevious={()=> handlePagenation("previous")} />
+        onPrevious={()=> handlePagenation("previous")} 
+        
+        />
     </div>
     )
 }

@@ -53,7 +53,7 @@ export function SignUp() {
 
         <Button type="submit" isLoading={isLoading}>Cadastrar</Button>
 
-        <a href="/" className="text-sm font-semibold text-gray-200 mt-5 mb-2 text-center hover:text-red-300 transition ease-linear col-start-1">Já tenho uma conta</a>
+        <a href="/" className="text-sm font-semibold text-gray-200 mt-2 mb-2 text-center hover:text-red-300 transition ease-linear col-start-1">Já tenho uma conta</a>
 
 
     </form>

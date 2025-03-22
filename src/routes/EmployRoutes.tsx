@@ -11,7 +11,7 @@ export function EmployRoutes() {
         <Routes>
             <Route path="/" element={<AppLayout />} >
                 <Route path="/" element={<CashLoop />} />
-                <Route path="confirm" element={<Confirme />} />
+                <Route path="/confirm" element={<Confirme />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />

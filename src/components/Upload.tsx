@@ -11,7 +11,7 @@ export function Upload({ filename = null, ...rest }: Props) {
                 Comprovante
             </legend>
 
-            <div className="w-full h-12 flex items-center rounded-lg border border-gray-200 text-sm text-gray-300 outline-none bg-amber-50 mb-">
+            <div className="w-full h-12 flex items-center rounded-lg  text-gray-300 outline-none bg-amber-50 mb-">
                 <input type="file" id="upload" className="hidden" {...rest} />
 
                 <span className="text-xs text-gray-400 flex-1 pl-4">

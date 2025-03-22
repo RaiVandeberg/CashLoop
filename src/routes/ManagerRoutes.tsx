@@ -6,10 +6,14 @@ import { AppLayout } from "../components/AppLayout";
 
 import { NotFound } from "../pages/NotFound";
 
+import { CashLoop } from "../pages/CashLoop";
+
 export function ManagerRoutes(){
-    return (<Routes>
+    return (
+    <Routes>
         <Route path="/" element={<AppLayout />} >
-            <Route index element={<DashBoard />} />
+            <Route path="/" element={<DashBoard />} />
+            <Route path="/cashLoop/:id" element={<CashLoop />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
