@@ -1,8 +1,23 @@
-# CashLoop
+# 💸 CashLoop
 
-CashLoop é um projeto React que utiliza TypeScript e TailwindCSS para criar uma aplicação web moderna e responsiva.
+CashLoop é uma aplicação web moderna e responsiva desenvolvida com React, TypeScript e TailwindCSS. Esta aplicação tem como objetivo fornecer uma interface intuitiva e eficiente para gerenciamento financeiro.
 
-## Estrutura do Projeto
+## 📋 Índice
+
+- [Visão Geral](#visão-geral)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Instalação](#instalação)
+- [Scripts Disponíveis](#scripts-disponíveis)
+- [Estrutura de Arquivos](#estrutura-de-arquivos)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Contribuição](#contribuição)
+- [Licença](#licença)
+
+## 🌟 Visão Geral
+
+CashLoop é uma aplicação web que permite aos usuários gerenciar suas finanças de forma eficiente. A aplicação é construída utilizando as melhores práticas de desenvolvimento web, garantindo uma experiência de usuário fluida e responsiva.
+
+## 🗂 Estrutura do Projeto
 
 ```
 .gitignore
@@ -42,6 +57,7 @@ src/
         AuthLayout.tsx
         Button.tsx
         Input.tsx
+        Pagination.tsx
     pages/
         NotFound.tsx
         SignIn.tsx
@@ -53,7 +69,9 @@ src/
         EmployRoutes.tsx
 ```
 
-## Instalação
+## 🛠 Instalação
+
+Para instalar e executar o projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
     ```sh
@@ -66,7 +84,7 @@ src/
     npm install
     ```
 
-## Scripts Disponíveis
+## 🚀 Scripts Disponíveis
 
 No diretório do projeto, você pode executar:
 
@@ -83,7 +101,7 @@ Compila a aplicação para produção na pasta `dist`.
 
 Pré-visualiza a aplicação compilada.
 
-## Estrutura de Arquivos
+## 📁 Estrutura de Arquivos
 
 ### `src/components`
 
@@ -91,6 +109,7 @@ Pré-visualiza a aplicação compilada.
 - **AuthLayout.tsx**: Componente de layout para páginas de autenticação.
 - **Button.tsx**: Componente de botão reutilizável.
 - **Input.tsx**: Componente de input reutilizável.
+- **Pagination.tsx**: Componente de paginação.
 
 ### `src/pages`
 
@@ -110,20 +129,23 @@ Pré-visualiza a aplicação compilada.
 - **Icon.svg**: Ícone da aplicação.
 - **lo.png**: Logo da aplicação.
 
-## Configuração
+## 🛠 Tecnologias Utilizadas
 
-### `vite.config.ts`
+- **React**: Biblioteca JavaScript para construção de interfaces de usuário.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
+- **TailwindCSS**: Framework CSS para estilização rápida e eficiente.
+- **Vite**: Ferramenta de build rápida para desenvolvimento web.
 
-Configuração do Vite com suporte ao TailwindCSS.
+## 🤝 Contribuição
 
-### `tsconfig.json`
+Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
 
-Configuração do TypeScript.
+1. Faça um fork do projeto.
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
+3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`).
+4. Faça o push para a branch (`git push origin feature/nova-feature`).
+5. Abra um Pull Request.
 
-### `package.json`
-
-Dependências e scripts do projeto.
-
-## Licença
+## 📄 Licença
 
 Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
