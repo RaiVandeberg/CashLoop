@@ -1,151 +1,108 @@
 # 💸 CashLoop
 
-CashLoop é uma aplicação web moderna e responsiva desenvolvida com React, TypeScript e TailwindCSS. Esta aplicação tem como objetivo fornecer uma interface intuitiva e eficiente para gerenciamento financeiro.
+**CashLoop** é uma aplicação web moderna, responsiva e intuitiva para gerenciamento financeiro, desenvolvida com **React**, **TypeScript** e **TailwindCSS**. Ela oferece uma interface fluida e amigável, seguindo as melhores práticas de desenvolvimento web.
 
-## 📋 Índice
+---
+
+## 📑 Índice
 
 - [Visão Geral](#visão-geral)
-- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Arquitetura do Projeto](#arquitetura-do-projeto)
 - [Instalação](#instalação)
 - [Scripts Disponíveis](#scripts-disponíveis)
-- [Estrutura de Arquivos](#estrutura-de-arquivos)
+- [Estrutura de Diretórios](#estrutura-de-diretórios)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Contribuição](#contribuição)
+- [Como Contribuir](#como-contribuir)
 - [Licença](#licença)
+
+---
 
 ## 🌟 Visão Geral
 
-CashLoop é uma aplicação web que permite aos usuários gerenciar suas finanças de forma eficiente. A aplicação é construída utilizando as melhores práticas de desenvolvimento web, garantindo uma experiência de usuário fluida e responsiva.
+O **CashLoop** foi criado para facilitar o controle de finanças pessoais e corporativas, possibilitando que os usuários visualizem, organizem e acompanhem receitas, despesas e saldo em uma experiência simples e direta.
 
-## 🗂 Estrutura do Projeto
+---
 
-```
-.gitignore
-index.html
-package.json
-tsconfig.app.json
-tsconfig.json
-tsconfig.node.json
-vite.config.ts
-public/
-    Icon.svg
-    lo.png
-src/
-    App.tsx
-    index.css
-    main.tsx
-    vite-env.d.ts
-    assets/
-        accommodation.svg
-        approved.svg
-        chevron-down.svg
-        file.svg
-        food.svg
-        left.svg
-        logo.svg
-        logout.svg
-        ok.svg
-        others.svg
-        remove.svg
-        right.svg
-        search.svg
-        services.svg
-        transport.svg
-        upload.svg
-    components/
-        AppLayout.tsx
-        AuthLayout.tsx
-        Button.tsx
-        Input.tsx
-        Pagination.tsx
-    pages/
-        NotFound.tsx
-        SignIn.tsx
-        SignUp.tsx
-        CashLoop.tsx
-    routes/
-        index.tsx
-        AuthRoutes.tsx
-        EmployRoutes.tsx
-```
+## 🧩 Arquitetura do Projeto
 
-## 🛠 Instalação
+. ├── public/ │ ├── Icon.svg │ └── lo.png ├── src/ │ ├── assets/ # Ícones e imagens da interface │ ├── components/ # Componentes reutilizáveis da UI │ ├── pages/ # Páginas principais da aplicação │ ├── routes/ # Configurações de rotas │ ├── App.tsx │ ├── index.css │ ├── main.tsx │ └── vite-env.d.ts ├── .gitignore ├── index.html ├── package.json ├── tsconfig.*.json └── vite.config.ts
 
-Para instalar e executar o projeto localmente, siga os passos abaixo:
+yaml
+Copiar
+Editar
 
-1. Clone o repositório:
-    ```sh
-    git clone https://github.com/seu-usuario/cashloop.git
-    cd cashloop
-    ```
+---
 
-2. Instale as dependências:
-    ```sh
-    npm install
-    ```
+## ⚙️ Instalação
 
-## 🚀 Scripts Disponíveis
+Siga os passos abaixo para rodar o projeto localmente:
 
-No diretório do projeto, você pode executar:
+```bash
+# 1. Clone o repositório
+git clone https://github.com/seu-usuario/cashloop.git
+cd cashloop
 
-### `npm run dev`
+# 2. Instale as dependências
+npm install
 
-Executa a aplicação em modo de desenvolvimento.\
-Abra [http://localhost:3000](http://localhost:3000) para ver no navegador.
+# 3. Inicie o servidor de desenvolvimento
+npm run dev
+Abra http://localhost:3000 para visualizar no navegador.
 
-### `npm run build`
+🚀 Scripts Disponíveis
+Comando	Descrição
+npm run dev	Inicia o servidor de desenvolvimento
+npm run build	Gera a versão de produção na pasta dist/
+npm run preview	Visualiza a aplicação compilada localmente
+🗂 Estrutura de Diretórios
+components/
+AppLayout.tsx: Layout principal da aplicação
 
-Compila a aplicação para produção na pasta `dist`.
+AuthLayout.tsx: Layout para páginas de autenticação
 
-### `npm run preview`
+Button.tsx, Input.tsx, Pagination.tsx: Componentes reutilizáveis de UI
 
-Pré-visualiza a aplicação compilada.
+pages/
+CashLoop.tsx: Página principal do sistema financeiro
 
-## 📁 Estrutura de Arquivos
+SignIn.tsx: Tela de login
 
-### `src/components`
+SignUp.tsx: Tela de registro
 
-- **AppLayout.tsx**: Componente de layout principal da aplicação.
-- **AuthLayout.tsx**: Componente de layout para páginas de autenticação.
-- **Button.tsx**: Componente de botão reutilizável.
-- **Input.tsx**: Componente de input reutilizável.
-- **Pagination.tsx**: Componente de paginação.
+NotFound.tsx: Página 404
 
-### `src/pages`
+routes/
+index.tsx: Definição das rotas principais
 
-- **NotFound.tsx**: Página de erro 404.
-- **SignIn.tsx**: Página de login.
-- **SignUp.tsx**: Página de cadastro.
-- **CashLoop.tsx**: Página principal da aplicação.
+AuthRoutes.tsx: Rotas para autenticação
 
-### `src/routes`
+EmployRoutes.tsx: Rotas para usuários autenticados
 
-- **index.tsx**: Configuração das rotas principais.
-- **AuthRoutes.tsx**: Rotas de autenticação.
-- **EmployRoutes.tsx**: Rotas de usuários autenticados.
+🧰 Tecnologias Utilizadas
+React — Biblioteca para criação de interfaces de usuário
 
-### `public`
+TypeScript — Superset do JavaScript com tipagem estática
 
-- **Icon.svg**: Ícone da aplicação.
-- **lo.png**: Logo da aplicação.
+TailwindCSS — Framework de utilitários CSS
 
-## 🛠 Tecnologias Utilizadas
+Vite — Ferramenta de build e desenvolvimento frontend moderna
 
-- **React**: Biblioteca JavaScript para construção de interfaces de usuário.
-- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
-- **TailwindCSS**: Framework CSS para estilização rápida e eficiente.
-- **Vite**: Ferramenta de build rápida para desenvolvimento web.
+🤝 Como Contribuir
+Contribuições são super bem-vindas! Para colaborar:
 
-## 🤝 Contribuição
+bash
+Copiar
+Editar
+# Faça um fork do repositório
+# Crie uma nova branch
+git checkout -b feature/minha-feature
 
-Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
+# Faça commit das suas alterações
+git commit -m "feat: minha feature"
 
-1. Faça um fork do projeto.
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
-3. Commit suas mudanças (`git commit -m 'Adiciona nova feature'`).
-4. Faça o push para a branch (`git push origin feature/nova-feature`).
-5. Abra um Pull Request.
+# Faça push para a branch
+git push origin feature/minha-feature
+Depois, abra um Pull Request no repositório original.
 
-## 📄 Licença
-
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+📄 Licença
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
