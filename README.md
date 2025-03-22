@@ -34,7 +34,8 @@ CashLoop é uma aplicação web que permite aos usuários gerenciar suas finanç
 ├── .gitignore # Ignora arquivos desnecessários no versionamento
 ├── package.json # Dependências e scripts do projeto
 ├── tsconfig.json # Configuração do TypeScript
-└── vite.config.ts # Configuração do Vite```
+└── vite.config.ts # Configuração do Vite
+```
 
 ## 🛠 Instalação
 
