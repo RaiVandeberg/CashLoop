@@ -1,8 +1,20 @@
 import { useState } from "react"
 
+import { z, ZodError } from "zod"
+
 import { Input } from "../components/Input"
 
 import { Button } from "../components/Button"
+
+const signSchema = z.object({
+    name: z.string().trim().min(1, {message: "Nome é obrigatório"}),
+    email: z.string().email({message: "Email inválido"}),
+    password: z.string().min(6, {message: "Senha deve ter no mínimo 6 caracteres"}),
+    passwordConfirm: z.string({message: "Confirmação de senha é obrigatória"}),
+}).refine((date) => date.password === date.passwordConfirm, {
+    message: "Senhas não conferem",
+    path: ["passwordConfirm"]
+})
 
 export function SignUp() {
 
@@ -14,24 +26,38 @@ export function SignUp() {
 
     function onSubmit(e: React.FormEvent) {
         e.preventDefault()
-        console.log({name, email, password, passwordConfirm})
+        try {
+            setIsLoading(true)
+            const data = signSchema.parse({name, email, password, passwordConfirm})
+        } catch (error) {
+            if(error instanceof ZodError) {
+               return alert(error.errors[0].message)
+            }
 
+            alert("não foi possível realizar o cadastro")
+        } finally{
+            setIsLoading(false)
+        }
     }
 
     return <form onSubmit={onSubmit}
         className="w-full flex flex-col gap-4">
-        <Input required 
-        legend="E-mail" 
-        type="email"   
-        placeholder="seu@gmail.com" 
-        onChange={e => setEmail(e.target.value)}
-        />
+
+
+        
 
 <Input required 
         legend="nome"   
         placeholder="Seu nome"
         onChange={e => setName(e.target.value)} 
         
+        />
+
+<Input required 
+        legend="E-mail" 
+        type="email"   
+        placeholder="seu@gmail.com" 
+        onChange={e => setEmail(e.target.value)}
         />
 
         <Input required 
