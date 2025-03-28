@@ -1,6 +1,10 @@
 import { useState } from "react"
 
+import { useNavigate } from "react-router"
+import { AxiosError } from "axios"
 import { z, ZodError } from "zod"
+
+import { api } from "../services/api"
 
 import { Input } from "../components/Input"
 
@@ -23,15 +27,26 @@ export function SignUp() {
     const [password, setPassword] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
     const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate()
 
-    function onSubmit(e: React.FormEvent) {
+    async function onSubmit(e: React.FormEvent) {
         e.preventDefault()
         try {
             setIsLoading(true)
             const data = signSchema.parse({name, email, password, passwordConfirm})
+
+            await api.post("/users", data)
+
+            if(confirm("Cadastro realizado com sucesso! Deseja fazer login?")) {
+                navigate("/")
+            }
         } catch (error) {
+            console.log(error)
             if(error instanceof ZodError) {
                return alert(error.errors[0].message)
+            }
+            if(error instanceof AxiosError) {
+                return alert(error.response?.data.message)
             }
 
             alert("não foi possível realizar o cadastro")
