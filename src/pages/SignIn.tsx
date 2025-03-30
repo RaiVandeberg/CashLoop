@@ -1,22 +1,45 @@
 import { useActionState } from "react"
-
+import { z, ZodError } from "zod"
+import { api } from "../services/api"
+import { AxiosError } from "axios"
 import { Input } from "../components/Input"
-
 import { Button } from "../components/Button"
 
-export function SignIn() {
-    const [ state, formAction, isLoading ] = useActionState(signIn, {email: "", password:""})
+const signInScheme = z.object({
+    email: z
+    .string()
+    .email( {message: "E-mail inválido"}),
+    password: z
+    .string()
+    .trim()
+    .min(6, {message: "A senha deve ter pelo menos 6 caracteres"})
+})
 
-   
-    
-    async function signIn(prevState: any, formData: FormData) {
-       const email = formData.get("email")
-         const password = formData.get("password")
-        
-         return { email, password }
-        
-       
-        
+export function SignIn() {
+    const [ state, formAction, isLoading ] = useActionState(signIn, null)
+
+    async function signIn(_: any, formData: FormData) {
+
+        try {
+            const data  = signInScheme.parse({
+                email: formData.get("email"),
+                password: formData.get("password")
+               })
+
+               const response = await api.post("/sessions", data)
+               console.log(response.data)
+
+        } catch (error) {
+            console.log(error)
+            if (error instanceof ZodError) {
+               return { message: (error.issues[0].message)}
+            }
+            if( error instanceof AxiosError) {
+                return { message: error.response?.data.message}
+            }
+
+            return { message: "Erro ao fazer login, tente novamente mais tarde"}
+        }
 
     }
 
@@ -27,8 +50,6 @@ export function SignIn() {
         legend="E-mail" 
         type="email"   
         placeholder="seu@gmail.com" 
-        defaultValue={String(state?.email)}
-       
         
         />
 
@@ -38,10 +59,11 @@ export function SignIn() {
         type="password"   
         placeholder="Digite sua senha" 
         min={6}
-        defaultValue={String(state?.password)}
-        
        
         />
+        <p className=" text-sm text-gray-50 text-center my-2 font-medium">
+            {state?.message}
+        </p>
 
         <Button type="submit" isLoading={isLoading}>Entrar</Button>
 

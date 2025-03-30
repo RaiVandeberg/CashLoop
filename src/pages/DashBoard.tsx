@@ -7,6 +7,7 @@ import { Pagination } from "../components/Pagination"
 import { CashLoopItens, CashLoopItemProps } from "../components/CashLoopItem"
 import { formatCurrency } from "../utils/formatCurrency"
 
+
 const REFUND_EXAMPLE = {
     id: "123",
     username: "Raí",
@@ -21,6 +22,8 @@ export function DashBoard() {
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(10)
     const [refunds, setRefunds] = useState<CashLoopItemProps[]>([REFUND_EXAMPLE])
+
+
 
     function fetchRefunds(e: React.FormEvent) {
         e.preventDefault()
