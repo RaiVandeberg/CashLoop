@@ -11,17 +11,12 @@ import { EmployRoutes } from "./EmployRoutes";
 import { Loading } from "../components/Loading";
 
 const isLoading = false
-//const session = undefined
 
-const session = {
-    user: {
-        role: ""
-    }
-}
+
 
 export function Routes() {
-    const context = useAuth()
-    console.log(context)
+    const {session} = useAuth()
+    
 
     function Route(){
         switch (session?.user.role) {
