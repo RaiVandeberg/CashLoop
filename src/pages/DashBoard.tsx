@@ -1,6 +1,11 @@
 import { Button } from "../components/Button"
+
+import { api } from "../services/api"
+
+import { AxiosError } from "axios"
+
 import { Input } from "../components/Input"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { CATEGORIES } from "../utils/categories"
 import searchSvg from "../assets/search.svg"
 import { Pagination } from "../components/Pagination"
@@ -16,19 +21,34 @@ const REFUND_EXAMPLE = {
     categoryImg: CATEGORIES["transport"].icon
 
 }
+const PER_PAGE = 5
 
 export function DashBoard() {
     const [name, setName] = useState("")
     const [page, setPage] = useState(1)
-    const [totalPages, setTotalPages] = useState(10)
+    const [totalPages, setTotalPages] = useState(0)
     const [refunds, setRefunds] = useState<CashLoopItemProps[]>([REFUND_EXAMPLE])
 
 
 
-    function fetchRefunds(e: React.FormEvent) {
-        e.preventDefault()
-        console.log(name)
+    async function fetchRefunds() {
 
+        try {
+            const response = await api.get(
+                `/cashloop?name=${name.trim()}&page=${page}&perPage=${PER_PAGE}`
+            )
+            console.log(response.data)
+        } catch (error) {
+        console.log(error)
+        
+        if( error instanceof AxiosError) {
+            return alert(error.response?.data.message)
+        }
+
+        alert("Erro ao buscar reembolsos")
+        
+
+        }
     }
 
     function handlePagenation(action: "next" | "previous") {
@@ -43,6 +63,10 @@ export function DashBoard() {
         return prevPage
     })
 }
+
+useEffect(() => {
+    fetchRefunds()
+},[])
     return (
     <div className="bg-red-200 rounded-xl p-10 md:min-w-[768px]">
         <h1 className=" text-gray-200 font-bold text-xl flex-1">Solicitações</h1>

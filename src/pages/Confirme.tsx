@@ -9,7 +9,7 @@ export function Confirme() {
         return <Navigate to="/" />
     }
     return (
-        <div className=" bg-red-200 lg:w-[512px] rounded-xl flex flex-col items-center p-10 gap-6 text-gray-200 ">
+        <div className=" bg-red-200 lg:w-[812px] rounded-xl flex flex-col items-center p-10 gap-6 text-gray-200 ">
             <h1 className=" text-2xl font-bold text-center">Solicitação Enviada!</h1>
 
             <img src={okSvg} alt="confirm" className="w-28"/>

@@ -10,7 +10,7 @@ export function Header(){
 
             <div className="flex items-center gap-3">
                 <span className="text-sm font-bold text-gray-300"
-                >Olá, Raí</span>
+                >Olá, {auth.session?.user.name}</span>
 
                 <img src={logoutsvg} alt="icone de sair"
                 className="my-8 cursor-pointer hover:opacity-75 transition ease-linear" 
