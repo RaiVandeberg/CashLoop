@@ -34,7 +34,7 @@ export function DashBoard() {
     async function fetchRefunds() {
 
         try {
-            const response = await api.get(
+            const response = await api.get<CashloopPaginationAPIResponse>(
                 `/cashloop?name=${name.trim()}&page=${page}&perPage=${PER_PAGE}`
             )
             console.log(response.data)
