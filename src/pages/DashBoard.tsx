@@ -14,13 +14,15 @@ import { formatCurrency } from "../utils/formatCurrency"
 
 
 
-const PER_PAGE = 5
+const PER_PAGE = 4
 
 export function DashBoard() {
     const [name, setName] = useState("")
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
     const [refunds, setRefunds] = useState<CashLoopItemProps[]>([])
+
+    
 
 
 
@@ -41,8 +43,9 @@ export function DashBoard() {
             }))
             
         )
-        
         setTotalPages(response.data.pagination.totalPages)
+        
+        
         } catch (error) {
         console.log(error)
         
@@ -76,9 +79,9 @@ export function DashBoard() {
 
 useEffect(() => {
     fetchRefunds()
-},[])
+},[page])
     return (
-    <div className="bg-red-200 rounded-xl p-10 md:min-w-[768px]">
+    <div className="bg-red-200 rounded-xl p-5  md:min-w-[768px] md:max-w-[1068px]">
         <h1 className=" text-gray-200 font-bold text-xl flex-1">Solicitações</h1>
 
         <form 

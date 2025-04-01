@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router"
 import { CATEGORIES, CATEGORIES_KEYS } from "../utils/categories"    
 import { z, ZodError } from "zod"
@@ -9,6 +9,7 @@ import fileSvg from "../assets/file.svg"
 import { Select } from "../components/Select"
 import { Upload } from "../components/Upload"
 import { Button } from "../components/Button"
+import { formatCurrency } from "../utils/formatCurrency"
 
 const cashloopSchema = z.object({
     name: z.string().min(3, { message: "Nome deve ter pelo menos 3 caracteres" }),
@@ -23,6 +24,7 @@ export function CashLoop() {
     const [isLoading, setIsLoading] = useState(false)
     const [category, setCategory] = useState("")
     const [filename, setFilename] = useState<File | null>(null)
+    const [ fileUrl, setFileUrl] = useState<string | null >(null)
 
     const navigate = useNavigate()
     const params = useParams<{id: string}>()
@@ -74,6 +76,28 @@ export function CashLoop() {
         }
         
     }
+
+    async function fetchRefunds(id: string) {
+        try {
+            const { data} = await api.get<CashloopAPIResponse>(`/cashloop/${id}`)
+           setName(data.name)
+           setCategory(data.category)
+           setAmount(formatCurrency(data.amount))
+           setFileUrl(data.filename)
+        } catch (error) {
+            console.log(error)
+            if(error instanceof AxiosError){
+                return alert(error.response?.data.message)
+            }
+            alert("Erro ao buscar reembolsos")
+        }
+    }
+
+    useEffect(() => {
+        if(params.id){
+            fetchRefunds(params.id)
+        }
+    },[params.id])
     
     return <form onSubmit={onSubmit} className="bg-red-100 w-full rounded-xl flex flex-col p-10 gap-6 lg:min-w-[512px]">
         <header>
@@ -96,15 +120,15 @@ export function CashLoop() {
 
         <Input required 
         legend="Valor" 
-        type="number"  
+        type="string"  
         value={amount} 
         onChange={(e) => setAmount(e.target.value)}
         disabled={!!params.id}
         />
         </div>
 
-        {
-            params.id ? (<a  className="text-sm font-bold text-gray-200 flex justify-center items-center gap-2 my-6 hover:opacity-70" href="" target="_blank"> 
+        {(params.id && fileUrl) ? (
+            <a  className="text-sm font-bold text-gray-200 flex justify-center items-center gap-2 my-6 hover:opacity-70" href={`http://localhost:3333/uploads/${fileUrl}`} target="_blank"> 
             <img src={fileSvg} alt="Icone de arquivo" />
             Abrir comprovante
             </a>
