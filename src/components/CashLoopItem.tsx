@@ -1,9 +1,9 @@
 export type CashLoopItemProps = {
-    id: string;
-    username: string;
-    category: string;
-    value: string;
-    categoryImg: string;
+    id: string
+    name: string
+    description: string
+    amount: string
+    categoryImg: string
 }
 
 type Props = React.ComponentProps<"a">  & {
@@ -18,13 +18,13 @@ export function CashLoopItens({data,...rest}: Props){
     className="w-8 h-8" />
 
     <div className="flex flex-col flex-1">
-        <strong className=" text-sm text-gray-200 font-bold">{data.username}</strong>
-        <span className=" text-xs text-gray-200"> {data.category} </span>
+        <strong className=" text-sm text-gray-200 font-bold">{data.name}</strong>
+        <span className=" text-xs text-gray-200"> {data.description} </span>
     </div>
 
     <span className="text-sm text-gray-200 font-semibold">
         <small className="font-normal text-gray-100">R$</small>
-        {data.value}
+        {data.amount}
     </span>
     </a>
     

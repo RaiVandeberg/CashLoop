@@ -13,21 +13,14 @@ import { CashLoopItens, CashLoopItemProps } from "../components/CashLoopItem"
 import { formatCurrency } from "../utils/formatCurrency"
 
 
-const REFUND_EXAMPLE = {
-    id: "123",
-    username: "Raí",
-    category: "Transporte",
-    value: formatCurrency(34.5),
-    categoryImg: CATEGORIES["transport"].icon
 
-}
 const PER_PAGE = 5
 
 export function DashBoard() {
     const [name, setName] = useState("")
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(0)
-    const [refunds, setRefunds] = useState<CashLoopItemProps[]>([REFUND_EXAMPLE])
+    const [refunds, setRefunds] = useState<CashLoopItemProps[]>([])
 
 
 
@@ -37,7 +30,19 @@ export function DashBoard() {
             const response = await api.get<CashloopPaginationAPIResponse>(
                 `/cashloop?name=${name.trim()}&page=${page}&perPage=${PER_PAGE}`
             )
-            console.log(response.data)
+           setRefunds(
+            response.data.refunds.map((refund) => ({
+                id: refund.id,
+                name: refund.user.name,
+                description: refund.name,
+                amount: formatCurrency(refund.amount),
+                categoryImg: CATEGORIES[refund.category].icon,
+                
+            }))
+            
+        )
+        
+        setTotalPages(response.data.pagination.totalPages)
         } catch (error) {
         console.log(error)
         
@@ -49,6 +54,11 @@ export function DashBoard() {
         
 
         }
+    }
+
+    function onSubmit(e: React.FormEvent) {
+        e.preventDefault()
+        fetchRefunds()
     }
 
     function handlePagenation(action: "next" | "previous") {
@@ -72,7 +82,7 @@ useEffect(() => {
         <h1 className=" text-gray-200 font-bold text-xl flex-1">Solicitações</h1>
 
         <form 
-        onSubmit={fetchRefunds}
+        onSubmit={onSubmit}
         className=" flex  flex-1 items-center justify-between pb-6 border-b-[1px] border-b-gray-300 md:flex-row gap-3 mt-6">
             <Input placeholder="Pesquisar pelo nome"  onChange={(e)=> setName(e.target.value)} />
 
